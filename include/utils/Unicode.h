@@ -22,8 +22,13 @@
 
 extern "C" {
 
+#ifndef __clang__
 typedef uint32_t char32_t;
 typedef uint16_t char16_t;
+#else
+typedef __char32_t char32_t;
+typedef __char16_t char16_t;
+#endif
 
 // Standard string functions on char16_t strings.
 int strcmp16(const char16_t *, const char16_t *);
