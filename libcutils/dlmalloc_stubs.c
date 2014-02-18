@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-#include "../../../bionic/libc/bionic/dlmalloc.h"
+#ifndef __CHERI__
+  #include "../../../bionic/libc/bionic/dlmalloc.h"
+#endif
+
 #include "cutils/log.h"
 
 /*

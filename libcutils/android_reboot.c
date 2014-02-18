@@ -106,6 +106,8 @@ static void remount_ro(void)
 
 int android_reboot(int cmd, int flags UNUSED, char *arg)
 {
+#ifdef HAVE_ANDROID_OS
+
     int ret;
 
     sync();
@@ -130,5 +132,11 @@ int android_reboot(int cmd, int flags UNUSED, char *arg)
     }
 
     return ret;
+
+#else
+
+    return -1;
+
+#endif
 }
 
