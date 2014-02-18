@@ -120,7 +120,9 @@ LOCAL_SHARED_LIBRARIES := \
         liblog \
         libdl
 
-include external/stlport/libstlport.mk
+ifneq ($(TARGET_ARCH_VARIANT),cheri)
+  include external/stlport/libstlport.mk
+endif
 
 LOCAL_MODULE:= libutils
 include $(BUILD_STATIC_LIBRARY)
@@ -136,7 +138,9 @@ LOCAL_SHARED_LIBRARIES := \
         libdl \
         liblog \
 
-include external/stlport/libstlport.mk
+ifneq ($(TARGET_ARCH_VARIANT),cheri)
+  include external/stlport/libstlport.mk
+endif
 
 include $(BUILD_SHARED_LIBRARY)
 

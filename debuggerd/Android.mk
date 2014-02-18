@@ -36,7 +36,9 @@ LOCAL_SHARED_LIBRARIES := \
 	liblog \
 	libselinux \
 
-include external/stlport/libstlport.mk
+ifneq ($(TARGET_ARCH_VARIANT),cheri)
+  include external/stlport/libstlport.mk
+endif
 
 include $(BUILD_EXECUTABLE)
 

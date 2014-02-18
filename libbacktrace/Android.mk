@@ -101,7 +101,9 @@ LOCAL_SHARED_LIBRARIES := \
 LOCAL_ADDITIONAL_DEPENDENCIES := \
 	$(LOCAL_PATH)/Android.mk
 
-include external/stlport/libstlport.mk
+ifneq ($(TARGET_ARCH_VARIANT),cheri)
+  include external/stlport/libstlport.mk
+endif
 
 include $(BUILD_SHARED_LIBRARY)
 
