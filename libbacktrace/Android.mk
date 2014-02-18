@@ -19,8 +19,11 @@ common_cppflags := \
 
 common_shared_libs := \
 	libcutils \
-	libgccdemangle \
 	liblog \
+
+ifneq ($(TARGET_ARCH_VARIANT),cheri)
+  common_shared_libs += libgccdemangle
+endif
 
 # To enable using libunwind on each arch, add it to this list.
 libunwind_architectures := arm arm64
@@ -95,8 +98,11 @@ LOCAL_C_INCLUDES := \
 
 LOCAL_SHARED_LIBRARIES := \
 	$(common_shared_libs) \
-	libcorkscrew \
-	libdl \
+	libcorkscrew 
+
+ifneq ($(TARGET_ARCH_VARIANT),cheri)
+  LOCAL_SHARED_LIBRARIES += libdl
+endif
 
 LOCAL_ADDITIONAL_DEPENDENCIES := \
 	$(LOCAL_PATH)/Android.mk

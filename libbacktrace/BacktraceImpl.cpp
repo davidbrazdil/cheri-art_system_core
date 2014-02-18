@@ -176,7 +176,7 @@ bool BacktracePtrace::ReadWord(uintptr_t ptr, uint32_t* out_value) {
     return false;
   }
 
-#if defined(__APPLE__)
+#if defined(__APPLE__) || defined(__FreeBSD__)
   BACK_LOGW("MacOS does not support reading from another pid.");
   return false;
 #else
