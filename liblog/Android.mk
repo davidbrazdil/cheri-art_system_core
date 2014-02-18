@@ -71,7 +71,11 @@ include $(BUILD_HOST_STATIC_LIBRARY)
 # ========================================================
 include $(CLEAR_VARS)
 LOCAL_MODULE := liblog
-LOCAL_SRC_FILES := $(liblog_target_sources)
+ifeq ($(TARGET_ARCH_VARIANT),cheri)
+  LOCAL_SRC_FILES := $(liblog_host_sources)
+else
+  LOCAL_SRC_FILES := $(liblog_target_sources)
+endif
 include $(BUILD_STATIC_LIBRARY)
 
 include $(CLEAR_VARS)
