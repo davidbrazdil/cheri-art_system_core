@@ -25,6 +25,14 @@ pid_t gettid() {
   return syscall(SYS_thread_selfid);
 }
 
+#elif defined(__FreeBSD__)
+
+#include <pthread_np.h>
+
+pid_t gettid() {
+   return pthread_getthreadid_np();
+}
+
 #elif !defined(__BIONIC__)
 
 // glibc doesn't implement or export either gettid or tgkill.
