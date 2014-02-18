@@ -61,7 +61,7 @@ bool try_get_word(const memory_t* memory, uintptr_t ptr, uint32_t* out_value) {
         *out_value = *(uint32_t*)ptr;
         return true;
     } else {
-#if defined(__APPLE__)
+#if defined(__APPLE__) || defined(__FreeBSD__)
         ALOGV("no ptrace on Mac OS");
         return false;
 #else
