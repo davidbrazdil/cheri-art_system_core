@@ -51,6 +51,14 @@ static pid_t gettid() {
   return syscall(SYS_thread_selfid);
 }
 
+#elif defined(__FreeBSD__)
+
+#include <pthread_np.h>
+
+static pid_t gettid() {
+  return pthread_getthreadid_np();
+}
+
 #else
 
 // glibc doesn't implement or export either gettid or tgkill.
@@ -156,7 +164,7 @@ ssize_t unwind_backtrace_thread(pid_t tid, backtrace_frame_t* backtrace,
 
     // TODO: there's no tgkill(2) on Mac OS, so we'd either need the
     // mach_port_t or the pthread_t rather than the tid.
-#if defined(CORKSCREW_HAVE_ARCH) && !defined(__APPLE__)
+#if defined(CORKSCREW_HAVE_ARCH) && !defined(__APPLE__) && !defined(__FreeBSD__)
     struct sigaction act;
     struct sigaction oact;
     memset(&act, 0, sizeof(act));

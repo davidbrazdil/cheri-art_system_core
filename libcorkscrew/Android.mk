@@ -49,7 +49,7 @@ LOCAL_SRC_FILES += \
 LOCAL_CFLAGS += -DCORKSCREW_HAVE_ARCH
 endif
 
-LOCAL_SHARED_LIBRARIES += libdl libcutils liblog libgccdemangle
+LOCAL_SHARED_LIBRARIES += libcutils liblog
 
 LOCAL_CFLAGS += -std=gnu99 -Werror -Wno-unused-parameter
 LOCAL_MODULE := libcorkscrew
